@@ -1,0 +1,57 @@
+<br><br>
+<div class="about">
+<div class=p1>POINTS OF INTERESTS</div><br>
+<div class="pTab">
+    Find by name:
+<input type="text" ng-model="pntCtrl.name" ng-change="pntCtrl.zeroRows()">
+Filter by minimum Rate:
+<select ng-model="pntCtrl.selectedRate" ng-options="rate*20 for rate in pntCtrl.rates" ng-change="pntCtrl.zeroRows()">choose a rate</select>
+Filter by category:
+<select ng-model="pntCtrl.selectedCat" ng-options="category.category for category in pntCtrl.categories" ng-change="pntCtrl.zeroRows()">choose a category</select>
+Order by:
+<select ng-model="pntCtrl.selectedOrder" ng-options="order for order in pntCtrl.orderby">choose a order</select>
+</div>
+<br>
+<table>
+    <tr>
+        <td class="pTab">            <center><b>Point ID</b></center>        </td>
+        <td class="pTab">            <center><b>Point Name</b></center>        </td>
+        <td class="pTab">            <center><b>Category</b></center>        </td>
+        <td class="pTab">            <center><b>Point Rate</b></center>        </td>
+        <td class="pTab">            <center><b>Point Picture</b></center>        </td>
+        <td class="pTab" ng-hide="pntCtrl.isnotlogged">            <center><b>Favorite Point</b></center>        </td>        
+    </tr>
+    <tr ng-model="pntCtrl.selectedRow" ng-repeat="point in pntCtrl.points |  filter : pntCtrl.filterFn | orderBy: pntCtrl.selectedOrder" >
+        <td>
+            {{point.pointID}}
+        </td>
+        <td>
+            {{point.pointName}}
+        </td>
+        <td>
+            {{point.category}}
+        </td>
+        <td>
+            {{-point.pointRate}}%
+        </td>
+        <td>
+                <img class="myPoi" ng-src="{{point.pointLink}}" ng-click="pntCtrl.getPoiInfo(point.pointID)">
+        </td>
+
+            <td ng-hide="pntCtrl.isnotlogged">
+                <div ng-hide="pntCtrl.favorites[point.localID]">
+                        <img  ng-style="{'height': '50px'}"  ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Five-pointed_star.svg/1200px-Five-pointed_star.svg.png" ng-click="pntCtrl.addToFavorites(point.localID,point.pointID)">
+                </div>
+                <div ng-hide="!pntCtrl.favorites[point.localID]">
+                        <img  ng-style="{'height': '50px'}"  ng-src="http://www.yo-yoo.co.il/coolpics/images/uploads/98c17b.png" ng-click="pntCtrl.removeFromFavorites(point.localID,point.pointID)">
+                </div>
+            </td>
+    </tr>
+</table>
+<center>
+        <div class="pTab" style="font-size:25px; color:black" ng-hide="pntCtrl.hasRows">
+            There is no such point of interest
+        </div>
+    </center>
+    <button ng-click="pntCtrl.sevFav()">Save Points</button><br>
+</div>

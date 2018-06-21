@@ -1,0 +1,14 @@
+<br><br>
+<div class="rec">
+<div class=p1>RETIVE PASSWORD</div>
+User Name:
+<input type="text" ng-model="rcvCtrl.userName"> <br>
+<button name="bU" style="margin-bottom: 10px" ng-click="rcvCtrl.retiveUser()" ng-disabled="rcvCtrl.shouldShow">Get quesetions for validate</button><br>
+<div id="userExist" ng-show="rcvCtrl.shouldShow">
+<span>{{rcvCtrl.questions[0]}}</span><br>
+Answer: <input type="text" ng-model="rcvCtrl.a1" ><br>
+<span>{{rcvCtrl.questions[1]}}</span><br>
+Answer: <input type="text" ng-model="rcvCtrl.a2" ><br>
+<button style="margin-bottom: 10px" ng-click="rcvCtrl.retivePass()">Retive Password</button><br>
+</div>
+</div>

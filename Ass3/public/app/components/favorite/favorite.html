@@ -1,0 +1,96 @@
+<div class="about">
+    <br><br>
+    <div class=p1>FAVORITE POINTS</div>
+
+    
+Find by name:
+<input type="text" ng-model="favCtrl.name" ng-change="favCtrl.zeroRows()">
+Filter by minimum Rate:
+<select ng-model="favCtrl.selectedRate" ng-options="rate*20 for rate in favCtrl.rates" ng-change="favCtrl.zeroRows()">choose a rate</select>
+Filter by category:
+<select ng-model="favCtrl.selectedCat" ng-options="category.category for category in favCtrl.categories" ng-change="favCtrl.zeroRows()">choose a category</select>
+Order by:
+<select ng-model="favCtrl.selectedOrder" ng-options="order for order in favCtrl.orderby">choose a order</select><br>
+<button ng-click="favCtrl.MOchangeMode()">{{favCtrl.MOmode}}</button>
+<div ng-hide="favCtrl.MOhide">
+    First helper to switch
+    <select  ng-model="favCtrl.MOselctedlist1" ng-options="MO1 for MO1 in favCtrl.MOlist" ></select>
+    Second helpere to switch
+    <select  ng-model="favCtrl.MOselctedlist2" ng-options="MO2 for MO2 in favCtrl.MOlist" ></select>
+    <button ng-click="favCtrl.MOswap()">set</button>
+</div>
+
+
+<br>
+
+<table  id="myTable">
+    <tr>
+        <td class="pTab">            <center><b>Point ID</b></center>        </td>
+        <td class="pTab">            <center><b>Point Name</b></center>        </td>
+        <td class="pTab">            <center><b>Category</b></center>        </td>
+        <td class="pTab">            <center><b>Point Rate</b></center>        </td>
+        <td class="pTab">            <center><b>Point Picture</b></center>        </td>
+        <td class="pTab" ng-hide="favCtrl.isnotlogged">            <center><b>Rate Point</b></center>        </td>
+        <td class="pTab" ng-hide="favCtrl.isnotlogged">            <center><b>Remove Point</b></center>        </td>
+        <td class="pTab" ng-hide="favCtrl.isnotlogged">            <center><b>*Help for your order</b></center>        </td>
+        
+    </tr>
+    <tr ng-model="favCtrl.selectedRow" ng-repeat="point in favToShow |  filter : favCtrl.filterFn | orderBy: favCtrl.selectedOrder">
+        <td>
+            {{point.pointID}}
+        </td>
+        <td>
+            {{point.pointName}}
+        </td>
+        <td>
+            {{point.category}}
+        </td>
+        <td>
+            {{-point.pointRate}}%
+        </td>
+        <td>
+                <img class="myPoi" ng-src="{{point.pointLink}}" ng-click="favCtrl.getPoiInfo(point.pointID)">
+        </td>
+        <td ng-hide="favCtrl.isnotlogged">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" ng-click="favCtrl.makeRate(point.pointID,point.pointName)">RATE</button>
+            </td>
+            <td ng-hide="favCtrl.isnotlogged">
+                <button  ng-click="favCtrl.removeFromFavorites(point.localID,point.pointID)">DELETE</button>
+            </td>
+            <td ng-hide="favCtrl.isnotlogged">
+                {{$index+1}}
+            </td>
+    </tr>
+</table>
+<button ng-click="favCtrl.sevFav()">Save Points</button><br>
+<center>
+        <div class="pTab" style="font-size:25px; color:black" ng-hide="favCtrl.hasRows">
+            There is no such point of interest
+        </div>
+    </center>
+</div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{favCtrl.reviewName}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                RATE: <select ng-model="favCtrl.reviewRate" ng-options="rate for rate in favCtrl.rates">choose a rate</select><br>
+                <br><br>
+                REVIEW: <input type="text-area" ng-model="favCtrl.reviewText">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="favCtrl.sendReview()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>

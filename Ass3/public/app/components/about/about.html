@@ -1,0 +1,17 @@
+<div class="about">
+    <br><br>
+    <div class=p1>NEW - YORK</div>
+    The City of New York, often called New York City or simply New York, is the most populous city in the United States.<br>
+    With an estimated 2017 population of 8,622,698 distributed over a land area of about 302.6 square miles (784 km2), New York City is also the most densely populated major city in the United States.<br>
+    Located at the southern tip of the state of New York, the city is the center of the New York metropolitan area, the largest metropolitan area in the world by urban landmass and one of the world's most populous megacities, with an estimated 20,320,876 people in its 2017 Metropolitan Statistical Area and 23,876,155 residents in its Combined Statistical Area.<br>
+    A global power city, New York City has been described as the cultural, financial, and media capital of the world, and exerts a significant impact upon commerce, entertainment, research, technology, education, politics, tourism, and sports.<br>
+    The city's fast pace defines the term New York minute. Home to the headquarters of the United Nations, New York is an important center for international diplomacy.<br>
+   
+    <div class="grid-container-ab">
+            <p ng-repeat="city in abtCtrl.points" style="float: left">
+                <span ng-bind="city.pointName"></span>
+                <br>
+                <img class="mySlides" ng-src="{{city.pointLink}}" ng-click="abtCtrl.getPoiInfo(city.pointID)">
+            </p>       
+    </div>  
+</div>

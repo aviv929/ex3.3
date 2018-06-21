@@ -1,0 +1,52 @@
+<form name="regForm" ng-submit="regCtrl.register(regCtrl.categories)" novalidate>
+<div class="reg"><br>
+<div class=p1>REGISTER</div>
+First Name:
+<input type="text" name = "fname" ng-model="regCtrl.firstName" required>
+<span ng-show="regForm.fname.$error.required " style="color:red">This is a required field</span> <br>
+Last Name:
+<input type="text" name="lname" ng-model="regCtrl.lastName" required>
+<span ng-show="regForm.lname.$error.required " style="color:red">This is a required field</span> <br>
+City:
+<input type="text" name="cname" ng-model="regCtrl.city" required>
+<span ng-show="regForm.cname.$error.required" style="color:red">This is a required field</span> <br>
+Country:
+<select name="ctr" ng-model="regCtrl.country" required>
+
+<br>
+        <option ng-repeat="country in regCtrl.countries" value="{{country}}">{{country}}</option>
+</select>
+<span ng-show="regForm.ctr.$error.required" style="color:red">This is a required field</span>
+
+
+
+
+<br>
+Email:
+<input type="text" name="mail" ng-model="regCtrl.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
+<span ng-show="regForm.mail.$error.required" style="color:red">This is a required field</span>
+<span style="color:Red" ng-show="regForm.mail.$error.pattern">Please Enter Valid Email</span><br>
+
+
+Interested Categories: (at least 2)
+<tmp style="font-size: 16px; color:black">
+<div class="grid-reg">
+<div ng-repeat="cat in regCtrl.categories" style="float:left;">
+<input type="checkbox" value="{{cat.catName}}" ng-model="cat.checked"/>{{cat.catName}}
+</div>
+</div>
+</tmp>
+First Question:
+<input type="text" name="q1" ng-model="regCtrl.q1" required/>
+<span ng-show="regForm.q1.$error.required" style="color:red">This is a required field</span> <br>
+Answer:
+<input type="text" name="a1" ng-model="regCtrl.q2" required/> 
+<span ng-show="regForm.a1.$error.required" style="color:red">This is a required field</span><br>
+Second Question:
+<input type="text" name="q2" ng-model="regCtrl.a1" required/>
+<span ng-show="regForm.q2.$error.required" style="color:red">This is a required field</span> <br>
+Answer:
+<input type="text" name="a2" ng-model="regCtrl.a2" required/>
+<span ng-show="regForm.a2.$error.required" style="color:red">This is a required field</span> <br>
+<button style="margin-bottom: 10px ; background-color: grey;" type= "submit" ng-disabled="regForm.$invalid" >Register</button></br>
+</form>

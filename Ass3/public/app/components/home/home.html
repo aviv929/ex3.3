@@ -1,0 +1,26 @@
+<div class="home">
+        <br><br>
+<div style="font-size: 18px; width: 50%; height: 50%; float:left ;text-align: center;">
+    <p1 style="font-size: 35px ;">Hi! Please Sign In</p1><br>
+    UserName: <input type="text" ng-model="homeCtrl.userName"> <br>
+    Password:    <input type="password" ng-model="homeCtrl.password"> <br>
+    <button ng-click="homeCtrl.login()">Login</button><br>
+    Forgor password ? <br>
+    <button ng-click="homeCtrl.retivePass()">Retive Password</button><br>
+
+ </div>
+ 
+ <div style="width: 50%;  float:right ; text-align: center;">
+        <p style="font-size: 30px ;"><b>Come and Join  - Create Acount!</b></p>
+    <button ng-click="homeCtrl.register()">Register</button>
+ </div>
+</div>
+<footer >
+        <div class="grid-container">
+<p ng-repeat="city in homeCtrl.cities" style="float: left">
+    <span ng-bind="city.pointName"></span>
+    <br>
+    <img style = "box-shadow: 5px 5px 5px grey;border-radius: 12px; " ng-style="{'height': '100px'}"  ng-src="{{city.pointLink}}" ng-click="homeCtrl.getPoiInfo(city.pointID)">
+</p>       
+</div>          
+</footer>

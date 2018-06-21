@@ -1,0 +1,24 @@
+<div class="home">
+        <br><br>
+<button style="margin-left:50px;" ng-click="memCtrl.logOut()">Log Out !</button>
+<div style="font-size: 18px; width: 50%; height: 50%; float:left ;text-align: center; background-color: hsla(0, 0%, 100%, 0.50); width: 40%;">
+    <p1 style="font-size: 35px ;">Popular points of interests</p1><br>
+        <p ng-repeat="img in memCtrl.topTwo">
+                <span ng-bind="img.pointName"></span><br>
+                <img class="mySlides" style = "box-shadow: 5px 5px 5px grey;border-radius: 12px; " ng-style="{'height': '100px'}"  ng-src="{{img.pointLink}}" ng-click="memCtrl.getPoiInfo(img.pointID)">
+        </p>  
+ </div>
+ 
+ <div style="width: 50%;  float:right ; text-align: center; background-color: hsla(0, 0%, 100%, 0.50); width: 40%;">
+        <p1 style="font-size: 35px ;">Last saved</p1><br>
+        <div style="font-size: 20px;" ng-hide="memCtrl.isSaved"> <br>
+            Save some images..
+        </div>
+        <div ng-show="memCtrl.isSaved">
+            <p ng-repeat="img in memCtrl.favPoi">
+                    <span ng-bind="img.pointName"></span><br>
+                    <img class="mySlides" style = "box-shadow: 5px 5px 5px grey;border-radius: 12px; " ng-style="{'height': '100px'}"  ng-src="{{img.pointLink}}" ng-click="memCtrl.getPoiInfo(img.pointID)">
+            </p>  
+        </div>
+ </div>
+</div>

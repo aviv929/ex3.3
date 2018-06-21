@@ -1,0 +1,25 @@
+<div class="about">
+    <br><br>
+    
+    <div class=p1>{{piCtrl.point.pointName}}</div>
+    Description: <span style="font-size:13px; color:black;" ng-bind="piCtrl.point.info"></span><br>
+    Num of watchers: <span style="font-size:13px; color:black;" ng-bind="piCtrl.point.numOfWatches"></span><br>
+    Grade: <span style="font-size:13px; color:black;" ng-bind="piCtrl.grade"></span>%<br>
+    Last Reviews:<br>
+    1) <span style="font-size:13px; color:black;" >{{piCtrl.reviews[0].review}}, {{piCtrl.reviews[0].datePost}}</span><br>
+    2) <span style="font-size:13px; color:black;">{{piCtrl.reviews[1].review}}, {{piCtrl.reviews[1].datePost}}</span><br>
+
+    
+        <p ng-repeat="img in piCtrl.images">
+            <img style = "box-shadow: 5px 5px 5px brown;border-radius: 12px; " ng-style="{'height': '100px'}"  ng-src="{{img}}">
+        </p> 
+        <div ng-show="isConnect">
+        <div ng-hide="piCtrl.picShow">
+                <img  ng-style="{'height': '50px'}"  ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Five-pointed_star.svg/1200px-Five-pointed_star.svg.png" ng-click="piCtrl.addToFavorites(piCtrl.point.pointID)">
+        </div>
+        <div ng-hide="!piCtrl.picShow">
+                <img  ng-style="{'height': '50px'}"  ng-src="http://www.yo-yoo.co.il/coolpics/images/uploads/98c17b.png" ng-click="piCtrl.removeFromFavorites(piCtrl.point.pointID)">
+        </div>
+        </div>   
+        <div id="mapid" style="text-align: center ; width: 400px; height: 200px;"></div>
+</div>
